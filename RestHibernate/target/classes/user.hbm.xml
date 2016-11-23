@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.data.hibernate.DataProvider" table="user">
+        <id name="id" type="int" column="u_id" >
+            <generator class="native"/>
+        </id>
+        
+        <property name="email" column="email"/>
+        <property name="uname"  column="uname" />
+        <property name="fname" column="fname"/>
+        <property name="lname" column="lname"/>
+        <property name="password" column="password"/>
+        <property name="lastlogintime" column="lastlogintime"/>
+        <property name="failedLoginCount" column="failedLoginCount"/>
+      
+    </class>
+</hibernate-mapping>
