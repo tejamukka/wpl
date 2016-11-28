@@ -138,20 +138,13 @@ $(function() {
 				<h3>Bid Information</h3>
 				 <div>
 					<span>Item Name<label>*</label></span>
-					<input type="text" name="itemname"> 
+					<input type="text" name="pname"> 
 				 </div>
 				 <div>
 					<span>Item Description<label>*</label></span>
-					<input type="text" name="itemdescription"> 
+					<input type="text" name="pdesc"> 
 				 </div>
-				 <div>
-					 <span>Item Price<label>*</label></span>
-					 <input type="text" name ="itemPrice"> 
-				 </div> 
-				 <div>
-				 <span>Item Image</span>
-				<input type="file" name="myImage" accept="image/x-png, image/gif, image/jpeg" />
-				</div>  
+				 
 				<input type="submit" value="submit"/>
 				 </div>  
 			</form>

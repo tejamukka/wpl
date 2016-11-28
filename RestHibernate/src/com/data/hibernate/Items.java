@@ -1,5 +1,18 @@
 package com.data.hibernate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import com.hibernate.queries.ItemsQueries;
+
+@Entity
+@Table(name = "items")
 public class Items {
 	
   public int getP_id() {
@@ -20,16 +33,25 @@ public class Items {
 	public void setP_desc(String p_desc) {
 		this.p_desc = p_desc;
 	}
-	public int getU_id() {
-		return u_id;
+	public int getId() {
+		return id;
 	}
-	public void setU_id(int u_id) {
-		this.u_id = u_id;
+	public void setId(int id) {
+		this.id = id;
 	}
+
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "pidseq")
+	@SequenceGenerator(name = "pidseq", sequenceName="pidseq" ,allocationSize = 1)
 private int p_id;
+	
+	@Column(name="p_name")
   private String p_name;
+	@Column(name="p_desc")
   private String p_desc;
-  private int u_id;
+	@Column(name="u_id")
+  private int id;
   
   
 }

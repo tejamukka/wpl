@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Shade Bootstarp Website Template | Login :: w3layouts</title>
+<title>Login</title>
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="web/js/jquery-1.11.0.min.js"></script>
@@ -131,11 +131,11 @@ $(function() {
 			<p>Lorem ipsum dolor sit amet enim. Etiam ullamcorp uspendisse a pellentesque.</p>
 		</div>
 		<div class="contact-box login-box">
-		<form  action="Login">
+		<form  action="Login" method="post">
 			<div class="form">
-				<small>User Name</small>
+				<small>Email</small>
 				<div class="text">
-					<input type="text" name="username" />
+					<input type="text" name="email" />
 				</div>
 			</div>
 			<div class="form">

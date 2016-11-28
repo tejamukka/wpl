@@ -1,5 +1,8 @@
+<%@page import="com.wpl.commons.ParameterConstants"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <jsp:useBean id="users" class="edu.utdallas.cs6314.jsp.servlet.mvc.rest.UserBean" scope ="request"/>  
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -78,7 +81,7 @@ $(function() {
 					<div class="navig">
 						<ul>
 							<li><a href="MyAccount.html">MyAccount</a></li>
-							<li><a href="men.html">Create Bid</a></li>
+							<li><a href="PostBid.jsp">Create Bid</a></li>
 							<li><a href="#">Dashboard</a></li>
 							<li><a href="#">Search Bids</a></li>
 							<li><a href="about.html">Contact Us</a></li>
@@ -137,30 +140,23 @@ $(function() {
 			 <div class="register-top-grid">
 				<h3>PERSONAL INFORMATION</h3>
 				 <div>
-					<span>First Name<label>*</label></span>
-					<input type="text"> 
-				 </div>
-				 <div>
-					<span>Last Name<label>*</label></span>
-					<input type="text"> 
-				 </div>
-				 <div>
-					 <span>Email Address<label>*</label></span>
-					 <input type="text"> 
-				 </div> 
-				 <div>
-					 <span>Phone Number<label>*</label></span>
-					 <input type="text"> 
-				 </div>
-				 <div>
-					 <span>Address<label>*</label></span>
-					 <input type="text" maxLength=100> 
+					<span>First Name</span>
+					<%= session.getAttribute(ParameterConstants.FIRST_NAME) %>
+				
 				 </div>
 				  <div>
-					 <span>Zip Code<label>*</label></span>
-					 <input type="text"> 
+					<span>Last Name</span>
+					<%= session.getAttribute(ParameterConstants.LAST_NAME) %>
 				 </div>
+				  <div>
+					<span>Email</span>
+					<%= session.getAttribute(ParameterConstants.EMAIL) %>
 				 </div>
+				  <div>
+					<span>Username</span>
+					<%= session.getAttribute(ParameterConstants.USERNAME) %>
+				 </div>
+				 
 			     
 			</form>
 			<div class="clearfix"> </div>

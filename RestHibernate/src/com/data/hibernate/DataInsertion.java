@@ -1,20 +1,24 @@
 package com.data.hibernate;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import com.wpl.commons.ParameterConstants;
 public class DataInsertion {
 	
-	public static void addUser(String username, String fname, String lname, String password,
+	public static int addUser(String username, String fname, String lname, String password,
 			String email) {
 		
 		Configuration con = new Configuration();
-		con.configure("hibernate.cfg.xml");
+		con.configure("hibernate.cfg.xml").addAnnotatedClass(DataProvider.class);
 		SessionFactory sf = con.buildSessionFactory();
 		Session ss = sf.openSession();
 		DataProvider provider = new DataProvider();
+		System.out.println(username+ "in hibenrate");
 		provider.setUname(username);
 		provider.setFname(fname);
 		provider.setLname(lname);
@@ -26,13 +30,14 @@ public class DataInsertion {
 		TR.commit();
 		ss.close();
 		sf.close();
+		return provider.getId();
 	}
 
 
 	
 	public static void insertInfo(){
 		Configuration con = new Configuration();
-		con.configure("hibernate.cfg.xml");
+		con.configure("hibernate.cfg.xml").addAnnotatedClass(DataProvider.class);
 		SessionFactory sf = con.buildSessionFactory();
 		Session ss = sf.openSession();
 		DataProvider provider = new DataProvider();
@@ -48,6 +53,24 @@ public class DataInsertion {
 		TR.commit();
 		ss.close();
 		sf.close();
+	}
+	
+
+	
+	public static DataProvider getUserByUid(Integer u_id) {
+		Configuration con = new Configuration();
+		con.configure("hibernate.cfg.xml").addAnnotatedClass(DataProvider.class);
+		SessionFactory sf = con.buildSessionFactory();
+		Session ss = sf.openSession();
+		try {
+			return ss.get(DataProvider.class, u_id);
+			
+		
+		} finally {
+			ss.close();
+			sf.close();
+			
+		}
 	}
 	
 	public void getData(){
@@ -74,7 +97,7 @@ public class DataInsertion {
 		con.configure("hibernate.cfg.xml");
 		SessionFactory sf = con.buildSessionFactory();
 		Session ss = sf.openSession();
-		Bids provider = new Bids();
+		Bids_Original provider = new Bids_Original();
 		provider.setBid_price(10);
 		provider.setP_id(1);
 		provider.setU_id(1);
@@ -102,9 +125,51 @@ public class DataInsertion {
 		ss.close();
 		sf.close();
 	}
-	public static void main(String[] args) {
-		new DataInsertion().insertOrderInfo();
+
+
+
+	public static int addItem(Integer userId, String pname, String pdesc) {
+		
+		Configuration con = new Configuration();
+		con.configure("hibernate.cfg.xml").addAnnotatedClass(Items.class);
+		SessionFactory sf = con.buildSessionFactory();
+		Session ss = sf.openSession();
+		Items provider = new Items();
+		provider.setId(userId);
+		provider.setP_name(pname);
+		provider.setP_desc(pdesc);
+		Transaction TR = ss.beginTransaction();
+		ss.save(provider);
+		System.out.println("Object saved successfully");
+		TR.commit();
+		ss.close();
+		sf.close();
+		return provider.getP_id();
 		
 	}
+	
+	
+	public static DataProvider getUserByEmail(String emailId) {
+		Configuration con = new Configuration();
+		con.configure("hibernate.cfg.xml").addAnnotatedClass(DataProvider.class);
+		SessionFactory sf = con.buildSessionFactory();
+		Session ss = sf.openSession();
+		try {
+			List<DataProvider> users = ss.getNamedQuery(UserQueries.FIND_USER_BY_EMAIL_ID).setString(ParameterConstants.EMAIL, emailId).list();
+			if (users.size() != 0) {
+				return users.get(0);
+			}
+		//	logger.error("Unable to find a valid user with the emailId {}. Returning null!", emailId);
+			return null;
+		} finally {
+			ss.close();
+			sf.close();
+			
+		}
+	}
+/*	public static void main(String args[]){
+		new DataInsertion().addUser("g", "b", "c", "f", "g");;
+	}*/
+	
 
 }

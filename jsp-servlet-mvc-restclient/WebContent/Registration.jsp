@@ -75,30 +75,10 @@ $(function() {
 						  });
 						});
 					</script>
-					<div class="navig">
-						<ul>
-							<li><a href="MyAccount.html">MyAccount</a></li>
-							<li><a href="men.html">Create Bid</a></li>
-							<li><a href="#">Dashboard</a></li>
-							<li><a href="#">Search Bids</a></li>
-							<li><a href="about.html">Contact Us</a></li>
-						</ul>
-					</div>
+					
 					<div class="clearfix"></div>
 				</div>
-				<div class="navigation-right">
-					<ul class="user">
-						<li>
-							<span></span><a href="login.html">Log In</a>
-						</li>
-						<li>
-							<span class="bascket"></span><a href="bascket.html">Basket(0)</a>
-						</li>
-						<li>
-							<button class="search"></button>
-						</li>
-					</ul>
-				</div>
+				
 				<div class="clearfix"></div>
 				<div class="serch">
 								<span>

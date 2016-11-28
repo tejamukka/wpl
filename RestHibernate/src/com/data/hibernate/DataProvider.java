@@ -4,17 +4,51 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
+
+
+
+
+@NamedQueries({
+		@NamedQuery(name = UserQueries.FIND_USER_BY_EMAIL_ID, query = UserQueries.FIND_USER_BY_EMAIL_ID_QUERY) })
+@Entity
+@Table(name = "user")
 public class DataProvider {
-
+	@Column(name="uname")
 	private String uname;
+	
+	@Column(name ="fname")
 	private String fname;
+	
+	@Column(name="lname")
 	private String lname;
+	
+	@Column(name="email")
 	private String email;
+	@Column(name="password")
 	private String password;
+	
+	@Column(name="lastlogintime")
 	private Date lastlogintime;
+	
+	@Column(name="failedLoginCount")
 	private Integer failedLoginCount;
+	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "ids")
+	@SequenceGenerator(name = "ids", sequenceName="ids" ,allocationSize = 1)
+	@Column(name="u_id")
 	private Integer id;
+	
 	public String getUname() {
 		return uname;
 	}

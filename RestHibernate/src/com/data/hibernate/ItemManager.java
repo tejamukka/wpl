@@ -17,7 +17,7 @@ public class ItemManager {
 		Items itemprovider = new Items();
 		itemprovider.setP_name("wplbook");
 		itemprovider.setP_desc("Any wpl book");
-		itemprovider.setU_id(1);
+		//itemprovider.setU_id(1);
 		
 		Transaction TR = ss.beginTransaction();
 		ss.save(itemprovider);

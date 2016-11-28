@@ -13,6 +13,11 @@ public interface ParameterConstants {
 	public static final String LAST_NAME = "lname";
 
 	public static final String PASSWORD = "password";
+	public static final String USER_ID = "id";
+	public static final String PNAME = "pname";
+	public static final String PDESC = "pdesc";
+	public static final String PID = "p_id";
+	
 
 
 }
