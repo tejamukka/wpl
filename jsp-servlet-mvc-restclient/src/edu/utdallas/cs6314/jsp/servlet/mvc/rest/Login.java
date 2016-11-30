@@ -102,6 +102,7 @@ System.out.println("in here");
 		session.setAttribute(ParameterConstants.LAST_NAME, (String)lname);
 		session.setAttribute(ParameterConstants.EMAIL, (String)email);
 		session.setAttribute(ParameterConstants.USERNAME, (String)uname);
+		session.setAttribute(ParameterConstants.USER_ID, id);
 		//	request.getRequestDispatcher("Display.jsp");
 			
 			

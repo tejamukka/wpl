@@ -11,6 +11,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import com.hibernate.queries.ItemsQueries;
 
+
+@NamedQueries({
+	@NamedQuery(name = Itemqueries.FETCH_All_ITEMS, query = Itemqueries.FETCH_All_ITEMS_QUERY) })
 @Entity
 @Table(name = "items")
 public class Items {

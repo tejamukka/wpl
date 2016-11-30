@@ -1,3 +1,4 @@
+<%@page import="com.wpl.commons.ParameterConstants"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!--A Design by W3layouts
@@ -77,9 +78,9 @@ $(function() {
 					</script>
 					<div class="navig">
 						<ul>
-							<li><a href="MyAccount.html">MyAccount</a></li>
-							<li><a href="men.html">Create Bid</a></li>
-							<li><a href="#">Dashboard</a></li>
+							<li><a href="MyAccount.jsp">MyAccount</a></li>
+							<li><a href="PostBid.jsp">Create Bid</a></li>
+							<li><a href="ShowcaseItems.jsp">Dashboard</a></li>
 							<li><a href="#">Search Bids</a></li>
 							<li><a href="about.html">Contact Us</a></li>
 						</ul>
@@ -144,6 +145,7 @@ $(function() {
 					<span>Item Description<label>*</label></span>
 					<input type="text" name="pdesc"> 
 				 </div>
+				
 				 
 				<input type="submit" value="submit"/>
 				 </div>  

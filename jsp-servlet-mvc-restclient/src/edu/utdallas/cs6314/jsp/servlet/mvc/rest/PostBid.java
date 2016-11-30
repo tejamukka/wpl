@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
@@ -16,6 +17,7 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
+import com.wpl.commons.HttpSessionUtil;
 import com.wpl.commons.ParameterConstants;
 import com.wpl.json.JsonParser;
 
@@ -47,12 +49,13 @@ public class PostBid extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+		if (HttpSessionUtil.isSessionValid(request)) {
+			Integer userId = HttpSessionUtil.getUserId(request);
 		Client client = new Client();
 		WebResource resource = client.resource("http://localhost:8080/RestHibernate/rest/postBid/item");
 		MultivaluedMap formData = new MultivaluedMapImpl();
 		
-		formData.putSingle(ParameterConstants.USER_ID, request.getParameter(ParameterConstants.USER_ID));
+		formData.putSingle(ParameterConstants.USER_ID, String.valueOf(userId));
 		
 		formData.putSingle(ParameterConstants.PNAME, request.getParameter(ParameterConstants.PNAME));
 		formData.putSingle(ParameterConstants.PDESC, request.getParameter(ParameterConstants.PDESC));	
@@ -65,9 +68,12 @@ public class PostBid extends HttpServlet {
 		GZIPInputStream is = new GZIPInputStream(restResponse.getEntityInputStream());
 		//InputStream is = new InputStream();
 		//System.out.println(response.toString());
+		
 		Map<String, Object> dataMap = JsonParser.parseJsonMapFromStream(is);
 		Object pId = (Integer)dataMap.get(ParameterConstants.PID);
 		if(pId !=null){
+			HttpSession session = request.getSession();
+			session.setAttribute(ParameterConstants.USER_ID, request.getParameter(ParameterConstants.USER_ID));
 			request.getRequestDispatcher("success.jsp").forward(request, response);
 		}
 		else
@@ -79,4 +85,4 @@ public class PostBid extends HttpServlet {
 
 	
 
-}
+}}

@@ -1,11 +1,13 @@
 package com.data.hibernate;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+
 
 import com.wpl.commons.ParameterConstants;
 public class DataInsertion {
@@ -147,7 +149,21 @@ public class DataInsertion {
 		return provider.getP_id();
 		
 	}
+public static List<Items> fetchItems(){
+	Configuration con = new Configuration();
+	con.configure("hibernate.cfg.xml").addAnnotatedClass(Items.class);
+	SessionFactory sf = con.buildSessionFactory();
+	Session ss = sf.openSession();
+	 
+		List<Items> items = ss.getNamedQuery(Itemqueries.FETCH_All_ITEMS).list();
+		for(Items i : items){
+			System.out.println(i.getP_desc());
+		}
+	return items;
+	}
 	
+
+
 	
 	public static DataProvider getUserByEmail(String emailId) {
 		Configuration con = new Configuration();
@@ -167,9 +183,9 @@ public class DataInsertion {
 			
 		}
 	}
-/*	public static void main(String args[]){
-		new DataInsertion().addUser("g", "b", "c", "f", "g");;
-	}*/
+	public static void main(String args[]){
+		new DataInsertion().fetchItems();
+	}
 	
 
 }

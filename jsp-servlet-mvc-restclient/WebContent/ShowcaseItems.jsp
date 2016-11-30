@@ -1,8 +1,5 @@
-<%@page import="com.wpl.commons.ParameterConstants"%>
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <jsp:useBean id="users" class="edu.utdallas.cs6314.jsp.servlet.mvc.rest.UserBean" scope ="request"/>  
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -12,7 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>MyAccount</title>
+<title>Showcase Bids</title>
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery-1.11.0.min.js"></script>
@@ -81,8 +78,8 @@ $(function() {
 					<div class="navig">
 						<ul>
 							<li><a href="MyAccount.html">MyAccount</a></li>
-							<li><a href="PostBid.jsp">Create Bid</a></li>
-							<li><a href="ShowcaseItems.jsp">Items Available</a></li>
+							<li><a href="men.html">Create Bid</a></li>
+							<li><a href="#">Dashboard</a></li>
 							<li><a href="#">Search Bids</a></li>
 							<li><a href="about.html">Contact Us</a></li>
 						</ul>
@@ -128,31 +125,70 @@ $(function() {
 		<div class="pag-nav">
 			<ul class="p-list">
 				<li><a href="index.html">Home</a></li> &nbsp;&nbsp;/&nbsp;
-				<li class="act">&nbsp;Place Bid</li>
+				<li class="act">&nbsp;Register</li>
 			</ul>
 		</div>
 		<div class="coats">
-			<h3 class="c-head">Available Items to place BID</h3>
+			<h3 class="c-head">Showcase Bids</h3>
 			<p>Details</p>
 		</div>
 		<div class="register">
-	  
-		
-				
-				
-				<h1>Successfully placed a item !!</h1>
-				
-				<form action="ShowItem" method="get">
-			
-			
-			<input type="button" id="button" value="submit"> 
-		</form>
+	  	  <form> 
+			 <div class="register-top-grid">
+				<ul>
+	            
+				 </div>
+			     
+			</form>
+			<div class="clearfix"> </div>
+			<div class="register-but">
+			   <form>
+				   <input type="submit" value="submit">
+				   <div class="clearfix"> </div>
+			   </form>
+			</div>
 	   </div>
-	  
-				
-	        
-	      
-		
+	   <div class="look">
+			<h3>You May Also Like</h3>
+		</div>
+		<!-- Partners Starts Here --->
+		<div class="partner">
+				<ul id="flexiselDemo3">
+				   <li><img src="web/images/ss1.jpg" class="img-responsive" alt=""/></li>
+				   <li><img src="web/images/ss2.jpg" class="img-responsive" alt=""/></li>
+				   <li><img src="web/images/ss3.jpg" class="img-responsive" alt=""/></li>
+				   <li><img src="web/images/ss4.jpg" class="img-responsive" alt=""/></li>
+				   <li><img src="web/images/ss5.png" class="img-responsive" alt=""/></li>
+				</ul>
+				<script type="text/javascript">
+					$(window).load(function() {
+						$("#flexiselDemo3").flexisel({
+							visibleItems: 5,
+							animationSpeed: 1000,
+							autoPlay: true,
+							autoPlaySpeed: 3000,    		
+							pauseOnHover: true,
+							enableResponsiveBreakpoints: true,
+					    	responsiveBreakpoints: { 
+					    		portrait: { 
+					    			changePoint:480,
+					    			visibleItems: 1
+					    		}, 
+					    		landscape: { 
+					    			changePoint:640,
+					    			visibleItems: 2
+					    		},
+					    		tablet: { 
+					    			changePoint:768,
+					    			visibleItems: 3
+					    		}
+					    	}
+					    });
+					    
+					});
+			 </script>
+	         <script type="text/javascript" src="web/js/jquery.flexisel.js"></script>
+		</div>
 		<!-- Partners Ends Here --->
 		<!-- Footer Menu Starts here --->
 		<div class="footer">
