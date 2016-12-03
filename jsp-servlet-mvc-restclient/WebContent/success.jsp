@@ -82,7 +82,7 @@ $(function() {
 						<ul>
 							<li><a href="MyAccount.html">MyAccount</a></li>
 							<li><a href="PostBid.jsp">Create Bid</a></li>
-							<li><a href="ShowcaseItems.jsp">Items Available</a></li>
+							<li><a href="ShowItem">Items Available</a></li>
 							<li><a href="#">Search Bids</a></li>
 							<li><a href="about.html">Contact Us</a></li>
 						</ul>
@@ -142,11 +142,7 @@ $(function() {
 				
 				<h1>Successfully placed a item !!</h1>
 				
-				<form action="ShowItem" method="get">
 			
-			
-			<input type="button" id="button" value="submit"> 
-		</form>
 	   </div>
 	  
 				

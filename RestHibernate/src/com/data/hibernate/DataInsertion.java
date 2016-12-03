@@ -35,6 +35,28 @@ public class DataInsertion {
 		return provider.getId();
 	}
 
+	
+	public static void addBid(Integer userId, Integer bprice, Integer pid) {
+		
+		Configuration con = new Configuration();
+		con.configure("hibernate.cfg.xml").addAnnotatedClass(Bids.class);
+		SessionFactory sf = con.buildSessionFactory();
+		Session ss = sf.openSession();
+		Bids provider = new Bids();
+		//System.out.println(username+ "in hibenrate");
+		System.out.println("Bid saved successfully");
+		provider.setBid_price(bprice);
+		provider.setId(userId);
+		provider.setP_id(pid);
+		Transaction TR = ss.beginTransaction();
+		ss.save(provider);
+	
+		TR.commit();
+		ss.close();
+		sf.close();
+		//return provider.getBid_id();
+	}
+
 
 	
 	public static void insertInfo(){
@@ -94,21 +116,24 @@ public class DataInsertion {
 		
 	}
 	
-	public static void insertBIdInfo(){
+	public static int insertBIdInfo(Integer userId, Integer bprice, Integer pid){
 		Configuration con = new Configuration();
-		con.configure("hibernate.cfg.xml");
+		con.configure("hibernate.cfg.xml").addAnnotatedClass(Bids.class);
 		SessionFactory sf = con.buildSessionFactory();
 		Session ss = sf.openSession();
-		Bids_Original provider = new Bids_Original();
-		provider.setBid_price(10);
-		provider.setP_id(1);
-		provider.setU_id(1);
+		Bids provider = new Bids();
+		provider.setBid_price(bprice);
+		provider.setId(userId);
+		provider.setP_id(pid);
+		
 		Transaction TR = ss.beginTransaction();
 		ss.save(provider);
+		int bid = provider.getBid_id();
 		System.out.println("Object saved successfully");
 		TR.commit();
 		ss.close();
 		sf.close();
+		return bid;
 	}
 	
 	public static void insertOrderInfo(){
@@ -149,6 +174,21 @@ public class DataInsertion {
 		return provider.getP_id();
 		
 	}
+	
+	
+	
+	public static List<Bids> fetchBids( Integer userId){
+		Configuration con = new Configuration();
+		con.configure("hibernate.cfg.xml").addAnnotatedClass(Bids.class);
+		SessionFactory sf = con.buildSessionFactory();
+		Session ss = sf.openSession();
+		 
+			List<Bids> bids = ss.getNamedQuery(BidsQueries.FIND_BIDS_BY_U_ID).setParameter(ParameterConstants.USER_ID, userId).list();
+			/*for(Bids i : bids){
+				System.out.println(i.getBid_id());
+			}*/
+		return bids;
+		}
 public static List<Items> fetchItems(){
 	Configuration con = new Configuration();
 	con.configure("hibernate.cfg.xml").addAnnotatedClass(Items.class);
@@ -183,8 +223,9 @@ public static List<Items> fetchItems(){
 			
 		}
 	}
+	
 	public static void main(String args[]){
-		new DataInsertion().fetchItems();
+		new DataInsertion().fetchBids(1);
 	}
 	
 

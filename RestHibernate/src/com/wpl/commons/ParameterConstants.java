@@ -17,6 +17,8 @@ public interface ParameterConstants {
 	public static final String PNAME = "pname";
 	public static final String PDESC = "pdesc";
 	public static final String PID = "p_id";
+	public static final String BID = "bid_id";
+	public static final String BPRICE = "bid_price";
 	
 	
 

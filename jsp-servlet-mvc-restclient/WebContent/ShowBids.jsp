@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -144,7 +146,7 @@ $('table td').on('change', function(evt, newValue) {
 <div id="fb-root"></div>
 
 <script>
-<% String payloadRequest = (String)request.getAttribute("jsonArray");  %>
+<% String payloadRequest = (String)request.getAttribute("data");  %>
 var data=<%=payloadRequest%>;
 
         $("#div1").append(tbl);
@@ -234,3 +236,4 @@ $('.editbtn').on('click',function(){
       
   </body>
 </html>
+    

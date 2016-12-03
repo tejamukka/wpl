@@ -82,7 +82,8 @@ $(function() {
 						<ul>
 							<li><a href="MyAccount.jsp">MyAccount</a></li>
 							<li><a href="PostBid.jsp">Create Bid</a></li>
-							<li><a href="ShowcaseItems.jsp">Dashboard</a></li>
+							<li><a href="ShowItem">Show Items to Bid</a></li>
+							<li><a href="BidServlet">Show Bids</a></li>
 							<li><a href="#">Search Bids</a></li>
 							<li><a href="about.html">Contact Us</a></li>
 						</ul>

@@ -14,7 +14,8 @@ import javax.persistence.Table;
 
 @NamedQueries({
 	@NamedQuery(name = BidsQueries.FIND_BIDS_BY_U_ID, query = BidsQueries.FIND_BIDS_BY_U_ID_QUERY) ,
-	@NamedQuery(name = BidsQueries.FIND_BIDS_BY_P_ID, query = BidsQueries.FIND_BIDS_BY_P_ID_QUERY)  })
+	@NamedQuery(name = BidsQueries.FIND_BIDS_BY_P_ID, query = BidsQueries.FIND_BIDS_BY_P_ID_QUERY),
+	@NamedQuery(name = BidsQueries.FETCH_All_BIDS, query = BidsQueries.FETCH_All_BIDS_QUERY)})
 @Entity
 @Table(name = "bids")
 

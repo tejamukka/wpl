@@ -16,7 +16,12 @@ public class BidsQueries {
 	
 	public static final String FIND_BIDS_BY_P_ID = "findBidsByPid";
 	public static final String FIND_BIDS_BY_P_ID_QUERY = "from Bids p where p.id = :p_id";
-
+	
+	public static final String  FETCH_All_BIDS = "findBids";
+	public static final String  FETCH_All_BIDS_QUERY = "from Bids";
+	
+	
+	
 	//public static final String FIND_BIDS_BY_P_ID = "from Bids b where b.p_id = :p_id";
 	
 	

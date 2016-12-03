@@ -81,11 +81,15 @@ System.out.println("in here");
 				.header("Accept-Encoding", "gzip")
 				.post(ClientResponse.class, formData);
 		
+		
+		
 		response.setContentType(MediaType.APPLICATION_JSON_TYPE.toString());
-		GZIPInputStream is = new GZIPInputStream(resp.getEntityInputStream());
+		//GZIPInputStream is = new GZIPInputStream(resp.getEntityInputStream());
 		//InputStream is = new InputStream();
 		//System.out.println(response.toString());
-		Map<String, Object> dataMap = JsonParser.parseJsonMapFromStream(is);
+		System.out.println(resp.getEntityInputStream());
+		Map<String, Object> dataMap = JsonParser.parseJsonMapFromStream(resp.getEntityInputStream());
+		System.out.println();
 		Object userId = dataMap.get(ParameterConstants.USER_ID);
 		Object uname = dataMap.get(ParameterConstants.USERNAME);
 		Object fname = dataMap.get(ParameterConstants.FIRST_NAME);
