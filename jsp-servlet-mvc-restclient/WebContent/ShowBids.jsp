@@ -45,7 +45,7 @@
 			
 			
           <table id="mainTable" class="table table-striped sortable">
-            <thead><tr><th>p_id</th><th>p_name</th><th>p_desc</th><th>id</th><th>bid_price</th><th>Bid</th></tr></thead>
+            <thead><tr><th>bid_id</th><th>bid_price</th><th>id</th><th>p_id</th><th>Cart</th></tr></thead>
 	
 	
           </table>
@@ -155,19 +155,19 @@ var data=<%=payloadRequest%>;
          var tr="<tr>";
          $("tr").attr("id","row"+i);
 
-        var td1="<td>"+data[i]["p_id"]+"</td>";
+        var td1="<td>"+data[i]["bid_id"]+"</td>";
 
-        var td2="<td>"+data[i]["p_name"]+"</td>";
-        var td3="<td>"+data[i]["p_desc"]+"</td>";
-        var td4="<td>"+data[i]["id"]+"</td>";
-        var td5="<td>"+ " "+"</td>";
-        var td6="<td>"+"<button class=\"editbtn\">Bid</button>"+"</td></tr>";
+        var td2="<td>"+data[i]["bid_price"]+"</td>";
+        var td3="<td>"+data[i]["id"]+"</td>";
+        var td4="<td>"+data[i]["p_id"]+"</td>";
+      //  var td5="<td>"+ " "+"</td>";
+        var td5="<td>"+"<button class=\"editbtn\">Add To Cart</button>"+"</td></tr>";
 
     
        var tbl=$("<table/>").attr("id","mainTable");
        tbl.addClass("table");
 
-       $("#mainTable").append(tr+td1+td2+td3+td4+td5+td6); 
+       $("#mainTable").append(tr+td1+td2+td3+td4+td5); 
 
     }  
       
@@ -187,7 +187,7 @@ $('.editbtn').on('click',function(){
 
    $.ajax({
     type: 'POST',
-    url: 'BidServlet',
+    url: 'CartServlet',
     crossDomain: true,
     data: JSON.stringify(retObj),
     
@@ -233,7 +233,8 @@ $('.editbtn').on('click',function(){
               
              });
 </script>
-      
+
+
   </body>
 </html>
     

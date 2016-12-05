@@ -29,18 +29,15 @@ public class LoginServices {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public String login(@FormParam(ParameterConstants.EMAIL) String email,
-			@FormParam(ParameterConstants.PASSWORD) String password) throws JsonProcessingException
-			//@FormParam(ParameterConstants.IS_LOGIN_THROUGH_FB) Integer isLoginThruFB,
-			//@FormParam(ParameterConstants.USERNAME) String userName,
-			//@HeaderParam(ParameterConstants.SECRET_KEY_NAME) String secretValue) {
+			@FormParam(ParameterConstants.PASSWORD) String password)   throws JsonProcessingException{
 			{
 		DataProvider user = DataInsertion.getUserByEmail(email);
 		//System.out.println("i am here too");
 		Map<String, Object> responseData = new HashMap<String, Object>();
 System.out.println("hii!!");
-	/*	if (!SecurityCheckUtil.isRequestFromValidSource(secretValue)) {
+		/*if (!SecurityCheckUtil.isRequestFromValidSource(secretValue)) {
 			String errorMsg = "Request is not from a valid source. Turning down the request!";
-			logger.error(errorMsg);
+			System.out.println(errorMsg);
 			return errorMsg;
 		}*/
 System.out.println(user.getId());
@@ -51,13 +48,14 @@ System.out.println(user.getId());
 				responseData.put(ParameterConstants.LAST_NAME,user.getLname() );
 				responseData.put(ParameterConstants.EMAIL,user.getEmail());
 				responseData.put(ParameterConstants.EMAIL,user.getUname());
-				//responseData.put(ParameterConstants.LAST_SUCCESSFUL_LOGIN_TIME, user.getLastLoginTime());
-				//responseData.put(ParameterConstants.FAILED_LOGIN_COUNT, user.getFailedLoginCount());
-				System.out.println("USer is valid");
-			} /*else {
-				DataManager.recordFailedLogin(user);
+				responseData.put(ParameterConstants.LAST_SUCCESSFUL_LOGIN_TIME, user.getLastlogintime());
 				responseData.put(ParameterConstants.FAILED_LOGIN_COUNT, user.getFailedLoginCount());
-			}*/
+				DataInsertion.recordSuccessfulLogin(user);
+				System.out.println("USer is valid");
+			} else {
+				DataInsertion.recordFailedLogin(user);
+				responseData.put(ParameterConstants.FAILED_LOGIN_COUNT, user.getFailedLoginCount());
+			}
 		} /*else if (isLoginThruFB == 1) {
 			Integer userId = DataManager.addUser(userName, null, emailId, "fb", CustomerType.CLIENT);
 			responseData.put(ParameterConstants.USER_ID, userId);
@@ -67,4 +65,4 @@ System.out.println(user.getId());
 		return JsonParser.convertToJson(responseData);
 	}
 
-}
+	}}

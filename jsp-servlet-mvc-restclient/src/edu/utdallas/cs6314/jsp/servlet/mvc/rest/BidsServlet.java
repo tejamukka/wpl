@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
-
+import javax.ws.rs.core.UriBuilder;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -61,16 +61,17 @@ public class BidsServlet extends HttpServlet{
 			WebResource resource = client.resource("http://localhost:8080/RestHibernate/rest/bidRequest");
 			
 			Integer userId = HttpSessionUtil.getUserId(req);
-			/*UriBuilder uriBuilder = resource.getUriBuilder();
-			resource = client.resource(uriBuilder.queryParam(ParameterConstants.USER_ID, userId).build());*/
+		//	System.out.println( req.getParameter("userId"));
+			UriBuilder uriBuilder = resource.getUriBuilder();
+			resource = client.resource(uriBuilder.queryParam(ParameterConstants.USER_ID, userId).build());
 			ClientResponse clientResponse = resource.header("Accept-Encoding", "gzip")
 					.accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
 			//System.out.println("O am in showitemservlet");
 			resp.setContentType(MediaType.APPLICATION_JSON);
 			
-		//GZIPInputStream is = new GZIPInputStream(clientResponse.getEntityInputStream());
-	//	InputStream in = GZIPUtil.decompressGZIPAndSetOutput(clientResponse, resp);
-			String json = JsonParser.parseJsonFromStream(clientResponse.getEntityInputStream());
+			 String jsonArray =GZIPUtil.decompressGZIPAndSetOutput(clientResponse, resp);
+		
+			// = JsonParser.parseJsonFromStream(clientResponse.getEntityInputStream());
 			
 			
 			//System.out.println(dataMap.get(ParameterConstants.USER_ID));
@@ -81,9 +82,10 @@ public class BidsServlet extends HttpServlet{
 			*/
 		
 			//resp.setCharacterEncoding("UTF-8");
-			req.setAttribute("data", json);
+			System.out.println(jsonArray);
+			req.setAttribute("data", jsonArray);
 			
-			RequestDispatcher rd=req.getRequestDispatcher("ShowBids.jsp");  
+			RequestDispatcher rd=req.getRequestDispatcher("shopping.jsp");  
 			rd.forward(req, resp);
 			
 			
@@ -100,8 +102,9 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 	  
 
 	 
-		/* (HttpSessionUtil.isSessionValid(request)) {
-			Integer userId = HttpSessionUtil.getUserId(request);*/
+		// (HttpSessionUtil.isSessionValid(request)) {
+			Integer userId = HttpSessionUtil.getUserId(request);
+			System.out.println("User who has the session" + userId);
 		Client client = new Client();
 		WebResource resource = client.resource("http://localhost:8080/RestHibernate/rest/bidRequest/Bid");
 		
@@ -116,7 +119,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 	System.out.println(dataMap.get("p_id")+ " " + dataMap.get("id") + " " + dataMap.get("bid_price") );
 		MultivaluedMap formData = new MultivaluedMapImpl();
 		
-		formData.putSingle(ParameterConstants.USER_ID,dataMap.get("id"));
+		formData.putSingle(ParameterConstants.USER_ID, String.valueOf(userId));
 		
 		formData.putSingle(ParameterConstants.PID,dataMap.get("p_id") );
 		formData.putSingle(ParameterConstants.BPRICE,dataMap.get("bid_price"));	

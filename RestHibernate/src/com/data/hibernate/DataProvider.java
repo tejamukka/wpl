@@ -37,7 +37,7 @@ public class DataProvider {
 	private String password;
 	
 	@Column(name="lastlogintime")
-	private Date lastlogintime;
+	private Timestamp lastlogintime;
 	
 	@Column(name="failedLoginCount")
 	private Integer failedLoginCount;
@@ -52,10 +52,10 @@ public class DataProvider {
 	public String getUname() {
 		return uname;
 	}
-	public Date getLastlogintime() {
+	public Timestamp getLastlogintime() {
 		return lastlogintime;
 	}
-	public void setLastlogintime(Date lastlogintime) {
+	public void setLastlogintime(Timestamp lastlogintime) {
 		this.lastlogintime = lastlogintime;
 	}
 	public Integer getFailedLoginCount() {

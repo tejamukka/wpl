@@ -23,7 +23,6 @@
 
         <!-- Mapping files -->
         
-            <mapping resource='orders.hbm.xml'/>
     </session-factory>
 </hibernate-configuration>
 

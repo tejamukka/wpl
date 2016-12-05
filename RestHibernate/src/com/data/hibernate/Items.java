@@ -13,7 +13,8 @@ import com.hibernate.queries.ItemsQueries;
 
 
 @NamedQueries({
-	@NamedQuery(name = Itemqueries.FETCH_All_ITEMS, query = Itemqueries.FETCH_All_ITEMS_QUERY) })
+	@NamedQuery(name = Itemqueries.FETCH_All_ITEMS, query = Itemqueries.FETCH_All_ITEMS_QUERY), 
+	@NamedQuery(name = Itemqueries.FETCH_All_ITEMS_ON_SEARCH, query = Itemqueries.FETCH_All_ITEMS_ON_SEARCH_QUERY)})
 @Entity
 @Table(name = "items")
 public class Items {

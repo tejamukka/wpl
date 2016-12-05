@@ -9,6 +9,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
@@ -43,9 +44,9 @@ import com.wpl.json.JsonParser;
 		
 		@GET
 		@Produces(MediaType.APPLICATION_JSON)
-		public Response getBids(@FormParam(ParameterConstants.USER_ID) Integer userId) throws JsonProcessingException {
+		public Response getBids(@QueryParam(ParameterConstants.USER_ID) Integer userId) throws JsonProcessingException {
 			ResponseBuilder respBuilder = new ResponseBuilderImpl();
-			//System.out.println(userId+"userId");
+			System.out.println(userId+"userId");
 			
 		    List<Bids> bids= DataInsertion.fetchBids(userId);
 		
@@ -53,7 +54,7 @@ import com.wpl.json.JsonParser;
 			//Map<String, Object> responseData = new HashMap<String, Object>();
 			//responseData.put(ParameterConstants.PID,pID );
 			Response response = respBuilder.entity(JsonParser.convertToJson(bids)).build();
-			System.out.println(response);
+		//	System.out.println(response);
 			
 			return response;
 		}

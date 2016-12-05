@@ -25,8 +25,32 @@ input {
 	outline-offset: 0px;
 	border: none;
 }
+
+
+
+#mainTable th, #mainTable td {
+    text-align: left; /* Left-align text */
+    padding: 12px; /* Add padding */
+}
+
+#mainTable tr {
+    /* Add a bottom border to all table rows */
+    border-bottom: 1px solid #ddd; 
+}
+
+#mainTable tr.header, #myTable tr:hover {
+    /* Add a grey background color to the table header and on hover */
+    background-color: #f1f1f1;
+}
+
+
+
 #mainTable thead th, #mainTable tbody td { 
   width: 25%;
+   border-collapse: collapse; /* Collapse borders */
+    width: 100%; /* Full-width */
+    border: 1px solid #ddd; /* Add a grey border */
+    font-size: 18px; /* Increase font-size */
 }
 #mainTable td + td, #mainTable th + th {
 	text-align: right;

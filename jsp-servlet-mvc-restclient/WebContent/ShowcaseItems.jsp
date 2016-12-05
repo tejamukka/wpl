@@ -40,7 +40,7 @@
 	<hr/>
 		
 
-			
+			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
 			
           <table id="mainTable" class="table table-striped sortable">
             <thead><tr><th>p_id</th><th>p_name</th><th>p_desc</th><th>id</th><th>bid_price</th><th>Bid</th></tr></thead>
@@ -205,6 +205,42 @@ $('.editbtn').on('click',function(){
 // Finds the closest row <tr> 
  // Gets a descendent with class="nr" .text(); // Retrieves the text within <td> $("#resultas").append($item); // Outputs the answer 
 
+</script>
+
+
+<script>
+
+function myFunction() {
+  // Declare variables 
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("mainTable");
+  tr = table.getElementsByTagName("tr");
+  var columns = table.getElementsByTagName("tr")[0].childElementCount;
+  console.log(columns);
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+	var isDisplay = false;
+	for (j = 0; j< columns; j++) {
+		td = tr[i].getElementsByTagName("td")[j];
+		if (td) {
+		  if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+			isDisplay = true;
+		  } else {
+			isDisplay = isDisplay || false;
+		  }
+		}	
+		else{
+			isDisplay = true;
+		}
+	}
+	if(isDisplay)
+		tr[i].style.display = "";
+	else
+		tr[i].style.display = "none";
+	}	
+}
 </script>
 <script>
   $('#mainTable').editableTableWidget().numericInputExample().find('td:first').focus();

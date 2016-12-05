@@ -67,7 +67,7 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		doGet(request, response);
 		Client client = new Client();
 		WebResource resource = client.resource(LOGIN_SERVICE_URL);
 		MultivaluedMap<String, String> formData = new MultivaluedMapImpl();
@@ -84,17 +84,20 @@ System.out.println("in here");
 		
 		
 		response.setContentType(MediaType.APPLICATION_JSON_TYPE.toString());
-		//GZIPInputStream is = new GZIPInputStream(resp.getEntityInputStream());
+		GZIPInputStream is = new GZIPInputStream(resp.getEntityInputStream());
 		//InputStream is = new InputStream();
 		//System.out.println(response.toString());
 		System.out.println(resp.getEntityInputStream());
-		Map<String, Object> dataMap = JsonParser.parseJsonMapFromStream(resp.getEntityInputStream());
-		System.out.println();
+		Map<String, Object> dataMap = JsonParser.parseJsonMapFromStream(is);
+		System.out.println(dataMap);
 		Object userId = dataMap.get(ParameterConstants.USER_ID);
 		Object uname = dataMap.get(ParameterConstants.USERNAME);
 		Object fname = dataMap.get(ParameterConstants.FIRST_NAME);
 		Object lname = dataMap.get(ParameterConstants.LAST_NAME);
 		Object email = dataMap.get(ParameterConstants.EMAIL);
+		Object llogin = dataMap.get(ParameterConstants.LAST_SUCCESSFUL_LOGIN_TIME);
+		Object flogin = dataMap.get(ParameterConstants.FAILED_LOGIN_COUNT);
+		
 		System.out.println(fname);
 		
 		
@@ -107,6 +110,8 @@ System.out.println("in here");
 		session.setAttribute(ParameterConstants.EMAIL, (String)email);
 		session.setAttribute(ParameterConstants.USERNAME, (String)uname);
 		session.setAttribute(ParameterConstants.USER_ID, id);
+		session.setAttribute(ParameterConstants.FAILED_LOGIN_COUNT, flogin);
+		session.setAttribute(ParameterConstants.LAST_SUCCESSFUL_LOGIN_TIME, llogin);
 		//	request.getRequestDispatcher("Display.jsp");
 			
 			

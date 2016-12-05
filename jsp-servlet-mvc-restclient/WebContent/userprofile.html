@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Profile</title>
+
+	
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic,700italic|Merriweather:300,400italic,300italic,400,700italic' rel='stylesheet' type='text/css'>
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Simple Line Icons -->
+	<link rel="stylesheet" href="css/simple-line-icons.css">
+	<!-- Datetimepicker -->
+	<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+	<!-- Flexslider -->
+	<link rel="stylesheet" href="css/flexslider.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+
+	<link rel="stylesheet" href="css/style.css">
+	
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+
+	
+
+ 
+    
+   
+    </body>
+    
+    <script src="js/logincheck.js"></script>
+	<script>checklogin();</script>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse navHeaderCollapse">
+            
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li><a href="pastorders.html">Past Orders</a></li>
+                    <li><a href="shopping.html">Shopping Cart</a></li>
+                    <li><a href="contact_us.html">Contact Us</a></li> 
+                    <li><a href="userprofile.html">My Profile</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                   <li  id="logoutb" class="logoutEffect">  <button class="logoutEffect" type="button"  ><font color="white">Logout</font></button></li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+    
+    <br/>
+	<link rel="stylesheet" href="assets/form-register.css">
+     <div class="main-content">
+
+        <!-- You only need this form and the form-register.css -->
+
+        <form class="form-register" method="post" action="#">
+
+            <div class="form-register-with-email">
+
+                <div class="form-white-background">
+
+                    <div class="form-title-row">
+                        <h1>Edit your profile</h1>
+                    </div>
+
+                    <div class="form-row">
+                        <label>
+                            <span>Name</span>
+                            <input id="name" type="text" name="name">
+                        </label>
+                    </div>
+					
+					<div class="form-row">
+                        <label>
+                            <span>Phone Number</span>
+                            <input id="phno" type="text" name="phno">
+                        </label>
+                    </div>
+
+                    <div class="form-row">
+                        <label>
+                            <span>Email</span>
+                            <input id="email" type="email" name="email">
+                        </label>
+                    </div>
+
+                    <div class="form-row">
+                        <label>
+                            <span>Password</span>
+                            <input id="pass" type="password" name="password">
+                        </label>
+                    </div>
+		
+                    <div class="form-row">
+                        
+                           Last Valid Login :&nbsp;&nbsp;<label for="myalue" ></label>
+                        
+                    </div>
+                    
+                    <div class="form-row">
+                        
+                           Failed Login Count :&nbsp;&nbsp;<label for="failedcount" ></label>
+                        
+                    </div>
+
+                    <div class="form-row">
+                        <button id="submit" type="submit">Update</button>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            
+
+        </form>
+
+    </div>
+
+	  <script>
+	  
+					$(document).ready(function() {
+						 $.getJSON('https://localhost:8443/utdeats/createUser',function(ordertable){
+							 var name= ordertable.name;
+							 var phno= ordertable.phoneNo;
+							 var email= ordertable.emailId;
+							 var pass= ordertable.password;
+						
+							 $('#name').val(name);
+							 $('#phno').val(phno);
+							 $('#email').val(email);
+							 $('#pass').val(pass);
+							 localStorage.setItem('obj',JSON.stringify(ordertable));
+							 
+						 });
+						 
+						 $('#submit').click(function() {
+							var temp = JSON.parse(localStorage.getItem('obj'));
+							var nm=$('#name').val();
+							temp.name=nm;
+							var phn=$('#phno').val();
+							temp.phNo=phn;
+							var em=$('#email').val();
+							temp.emailId=em;
+							var ps=$('#pass').val();
+							temp.password=ps;
+							temp.updated=1;	
+							$.post("https://localhost:8443/utdeats/createUser", temp);
+							
+						 });
+						 $("#logoutb").click(function(){
+								clicklgb();		
+						});
+						 
+						 var failedc= sessionStorage.getItem('failedLoginCount');
+				
+						 var time = sessionStorage.getItem('lastLoginTime');
+						 var time1=parseInt(time,10);
+						 var date = new Date(time1);
+					
+						
+						 jQuery("label[for='myalue']").html(date);
+						 jQuery("label[for='failedcount']").html(failedc);
+						 
+					});
+		</script>
+		
+
+</body>
+
+</html>

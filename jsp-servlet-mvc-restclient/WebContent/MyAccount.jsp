@@ -84,7 +84,7 @@ $(function() {
 							<li><a href="PostBid.jsp">Create Bid</a></li>
 							<li><a href="ShowItem">Show Items to Bid</a></li>
 							<li><a href="BidServlet">Show Bids</a></li>
-							<li><a href="#">Search Bids</a></li>
+							<li><a href="SearchBids.jsp">Search Items</a></li>
 							<li><a href="about.html">Contact Us</a></li>
 						</ul>
 					</div>
@@ -138,11 +138,13 @@ $(function() {
 		</div>
 		<div class="register">
 	  	  <form> 
-			 <div class="register-top-grid">
+			<!--  <div class="register-top-grid"> -->
 				<h3>PERSONAL INFORMATION</h3>
 				 <div>
 					<span>First Name</span>
 					<%= session.getAttribute(ParameterConstants.FIRST_NAME) %>
+					 
+					 <% request.setAttribute("userID", session.getAttribute(ParameterConstants.USER_ID)); %>
 				
 				 </div>
 				  <div>
@@ -151,11 +153,20 @@ $(function() {
 				 </div>
 				  <div>
 					<span>Email</span>
-					<%= session.getAttribute(ParameterConstants.EMAIL) %>
+					<input type="text" value="<%= session.getAttribute(ParameterConstants.EMAIL) %>"/>
 				 </div>
 				  <div>
 					<span>Username</span>
-					<%= session.getAttribute(ParameterConstants.USERNAME) %>
+					<input type="text" value= "<%= session.getAttribute(ParameterConstants.USERNAME) %>"/>
+				 </div>
+				 
+				  <div>
+					<span>Failed Login</span>
+					<%= session.getAttribute(ParameterConstants.FAILED_LOGIN_COUNT) %>
+				 </div>
+				  <div>
+					<span>Last Successful Login</span>
+					<%= session.getAttribute(ParameterConstants.LAST_SUCCESSFUL_LOGIN_TIME) %>
 				 </div>
 				 
 			     
